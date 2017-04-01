@@ -1,0 +1,19 @@
+{
+  "name": "angular2-test-work",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Organizzzm/angular2-test-work.git"
+  },
+  "author": "Dmitry Zakharov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Organizzzm/angular2-test-work/issues"
+  },
+  "homepage": "https://github.com/Organizzzm/angular2-test-work#readme"
+}

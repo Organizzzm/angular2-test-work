@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --inline --config ./configs/webpack.dev.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,41 @@
   "bugs": {
     "url": "https://github.com/Organizzzm/angular2-test-work/issues"
   },
-  "homepage": "https://github.com/Organizzzm/angular2-test-work#readme"
+  "homepage": "https://github.com/Organizzzm/angular2-test-work#readme",
+  "dependencies": {
+    "@angular/common": "~4.0.0",
+    "@angular/compiler": "~4.0.0",
+    "@angular/core": "~4.0.0",
+    "@angular/forms": "~4.0.0",
+    "@angular/http": "~4.0.0",
+    "@angular/platform-browser": "~4.0.0",
+    "@angular/platform-browser-dynamic": "~4.0.0",
+    "@angular/router": "~4.0.0",
+    "angular-in-memory-web-api": "~0.3.0",
+    "bootstrap": "4.0.0-alpha.6",
+    "core-js": "^2.4.1",
+    "rxjs": "5.0.1",
+    "zone.js": "^0.8.4"
+  },
+  "devDependencies": {
+    "@angularclass/hmr": "^1.2.2",
+    "@angularclass/hmr-loader": "^3.0.2",
+    "@types/node": "^7.0.12",
+    "angular2-template-loader": "^0.6.0",
+    "awesome-typescript-loader": "^3.1.2",
+    "css-loader": "^0.26.1",
+    "extract-text-webpack-plugin": "2.0.0-beta.5",
+    "file-loader": "^0.9.0",
+    "html-loader": "^0.4.3",
+    "html-webpack-plugin": "^2.16.1",
+    "node-sass": "^4.5.2",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.16.1",
+    "to-string-loader": "^1.1.5",
+    "typescript": "~2.2.0",
+    "webpack": "2.3.1",
+    "webpack-dev-server": "^2.4.2",
+    "webpack-merge": "^4.1.0"
+  }
 }

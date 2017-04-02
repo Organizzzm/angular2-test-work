@@ -1,24 +1,9 @@
-import {NgModule, ApplicationRef}      from '@angular/core';
+import {NgModule, ApplicationRef} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+// import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {removeNgStyles, createNewHosts, bootloader} from '@angularclass/hmr';
 
-import {AppComponent}  from './app.component';
-
-import {removeNgStyles, createNewHosts, createInputTransfer} from '@angularclass/hmr';
-
-import {ENV_PROVIDERS} from './environment';
-import {APP_RESOLVER_PROVIDERS} from './app.resolver';
-import {AppState, InternalStateType} from './app.service';
-
-const APP_PROVIDERS = [
-    ...APP_RESOLVER_PROVIDERS,
-    AppState
-];
-
-type StoreType = {
-    state: InternalStateType,
-    restoreInputValues: () => void,
-    disposeOldHosts: () => void
-};
+import {AppComponent} from './app.component';
 
 @NgModule({
     imports: [
@@ -28,51 +13,36 @@ type StoreType = {
         AppComponent
     ],
     bootstrap: [AppComponent],
-    providers: [
-        ENV_PROVIDERS,
-        APP_PROVIDERS
-    ]
+    providers: []
 })
 
 export class AppModule {
-    constructor(public appRef: ApplicationRef,
-                public appState: AppState) {
+    constructor(public appRef: ApplicationRef) {
     }
 
-    public hmrOnInit(store: StoreType) {
-        if (!store || !store.state) {
-            return;
-        }
-        console.log('HMR store', JSON.stringify(store, null, 2));
-        // set state
-        this.appState._state = store.state;
-        // set input values
-        if ('restoreInputValues' in store) {
-            let restoreInputValues = store.restoreInputValues;
-            setTimeout(restoreInputValues);
-        }
+    //TODO: need remove
+    // hmrOnInit(store: any) {
+    //     console.log('HMR store', store);
+    // }
 
-        this.appRef.tick();
-        delete store.state;
-        delete store.restoreInputValues;
-    }
-
-    public hmrOnDestroy(store: StoreType) {
-        const cmpLocation = this.appRef.components.map((cmp) => cmp.location.nativeElement);
-        // save state
-        const state = this.appState._state;
-        store.state = state;
-        // recreate root elements
+    hmrOnDestroy(store: any) {
+        var cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
+        // recreate elements
         store.disposeOldHosts = createNewHosts(cmpLocation);
-        // save input values
-        store.restoreInputValues = createInputTransfer();
         // remove styles
         removeNgStyles();
     }
 
-    public hmrAfterDestroy(store: StoreType) {
+    hmrAfterDestroy(store: any) {
         // display new elements
         store.disposeOldHosts();
         delete store.disposeOldHosts;
     }
 }
+
+//TODO: need remove
+// export function main() {
+//     return platformBrowserDynamic().bootstrapModule(AppModule);
+// }
+
+// bootloader(main);

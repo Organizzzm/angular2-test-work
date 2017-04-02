@@ -6,20 +6,23 @@ var helpers = require('./helpers');
 module.exports = {
 	entry: {
 		'polyfills': './src/polyfills.ts',
-		// 'vendor': './src/vendor.ts',
+		'vendor': './src/vendor.ts',
 		'app': './src/main.ts'
 	},
 
 	resolve: {
-		extensions: ['.ts', '.js']
+		extensions: ['.ts', '.js', '.scss', '.html']
 	},
 
 	module: {
+		// exprContextCritical: false,
 		rules: [
 			{
 				test: /\.ts$/,
-				loaders: [
-					'@angularclass/hmr-loader',
+				use: [
+					{
+						loader: '@angularclass/hmr-loader'
+					},
 					{
 						loader: 'awesome-typescript-loader',
 						options: {
@@ -38,26 +41,29 @@ module.exports = {
 				loader: 'file-loader?name=assets/[name].[hash].[ext]'
 			},
 			{
-				test: /\.css$/,
-				exclude: helpers.root('src', 'app'),
-				loader: ExtractTextPlugin.extract({fallbackLoader: 'style-loader', loader: 'css-loader?sourceMap'})
-			},
-			{
-				test: /\.css$/,
-				include: helpers.root('src', 'app'),
-				loader: 'raw-loader'
+				test: /\.scss$/,
+				exclude: /node_modules/,
+				use: [
+					ExtractTextPlugin.extract({
+						fallback: "style-loader",
+						loader: "css-loader",
+					}),
+					'to-string-loader',
+					'css-loader',
+					'sass-loader'
+				]
 			}
 		]
 	},
 
 	plugins: [
 		new webpack.ContextReplacementPlugin(
-			/angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+			/angular(\\|\/)core(\\|\/)@angular/,
 			helpers.root('./src'), {}
 		),
-
+		new webpack.NamedModulesPlugin(),
 		new webpack.optimize.CommonsChunkPlugin({
-			name: ['app', 'polyfills']
+			name: ['app', 'vendor', 'polyfills']
 		}),
 
 		new HtmlWebpackPlugin({

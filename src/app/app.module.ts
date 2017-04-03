@@ -1,13 +1,24 @@
-import {NgModule, ApplicationRef} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import { NgModule, ApplicationRef } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 // import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
-import {removeNgStyles, createNewHosts, bootloader} from '@angularclass/hmr';
+import { removeNgStyles, createNewHosts, bootloader } from '@angularclass/hmr';
 
-import {AppComponent} from './app.component';
+// Import modules
+import { CommonModule } from './common/common.module';
+import { NotFoundModule } from './404/404.module';
+
+// Import components
+import { AppComponent } from './app.component';
+
+// Import routes
+import { routing }  from './app.routes';
 
 @NgModule({
     imports: [
-        BrowserModule
+        BrowserModule,
+        routing,
+        CommonModule,
+        NotFoundModule,
     ],
     declarations: [
         AppComponent

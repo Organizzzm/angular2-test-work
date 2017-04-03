@@ -46,10 +46,10 @@ module.exports = {
 				use: [
 					ExtractTextPlugin.extract({
 						fallback: "style-loader",
-						loader: "css-loader",
+						loader: "styles-loader",
 					}),
 					'to-string-loader',
-					'css-loader',
+					'styles-loader',
 					'sass-loader'
 				]
 			}

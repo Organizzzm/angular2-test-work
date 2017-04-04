@@ -20,11 +20,7 @@ import { routing } from './common.routes';
         NavBarComponent,
         ClocksComponent
     ],
-    exports: [
-        CommonComponent,
-        NavBarComponent,
-        ClocksComponent
-    ],
+    exports: [],
     providers: []
 })
 

@@ -42,14 +42,13 @@ module.exports = {
 			},
 			{
 				test: /\.scss$/,
-				exclude: /node_modules/,
 				use: [
 					ExtractTextPlugin.extract({
 						fallback: "style-loader",
-						loader: "styles-loader",
+						loader: "css-loader",
 					}),
 					'to-string-loader',
-					'styles-loader',
+					'css-loader',
 					'sass-loader'
 				]
 			}

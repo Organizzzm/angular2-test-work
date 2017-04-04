@@ -7,35 +7,28 @@ import { ClocksComponent } from '../clocks/clocks.component';
 
 const routes: Routes = [
     {
-        path: 'contacts',
+        path: '',
         component: CommonComponent,
         children: [
             {
                 path: '',
+                redirectTo: 'contacts',
+                pathMatch: 'full'
+            },
+            {
+                path: 'contacts',
                 component: ContactsComponent
-            }
-        ]
-    },
-    {
-        path: 'groups',
-        component: CommonComponent,
-        children: [
+            },
             {
-                path: '',
+                path: 'groups',
                 component: GroupsComponent
-            }
-        ]
-    },
-    {
-        path: 'clocks',
-        component: CommonComponent,
-        children: [
+            },
             {
-                path: '',
+                path: 'clocks',
                 component: ClocksComponent
-            }
+            },
         ]
-    },
+    }
 ];
 
 export const routing = RouterModule.forChild(routes);

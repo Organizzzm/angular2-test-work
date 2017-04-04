@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 
 import { GroupsComponent } from './groups.component';
+import { MenuModule } from '../menu/menu.module';
 
 @NgModule({
-    imports: [RouterModule],
+    imports: [MenuModule],
     declarations: [GroupsComponent],
     exports: [GroupsComponent],
     providers: []

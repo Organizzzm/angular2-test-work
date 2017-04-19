@@ -1,6 +1,6 @@
 <div class="menu text-center">
-    <button type="button" class="btn btn-outline-primary btn-sm">Create</button>
-    <button type="button" class="btn btn-outline-primary btn-sm" disabled>Edit</button>
-    <button type="button" class="btn btn-outline-primary btn-sm" disabled>Delete</button>
-    <button type="button" class="btn btn-outline-primary btn-sm">Select</button>
+    <a *ngFor="let item of menu"
+       [routerLink]=[item.link]
+       role="button"
+       class="btn btn-outline-primary btn-sm ml-1 mr-1 {{ item.active }}">{{ item.name }}</a>
 </div>

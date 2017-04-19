@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { Menu } from '../menu/menu';
 
 @Component({
     selector: 'list-menu',
@@ -6,4 +8,5 @@ import { Component } from '@angular/core';
 })
 
 export class MenuComponent {
+    @Input() menu: Menu[];
 }

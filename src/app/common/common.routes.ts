@@ -2,8 +2,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { CommonComponent } from './common.component';
 import { ContactsComponent } from '../contacts/components/contacts.component';
+import { AddUserComponent } from '../contacts/components/adduser.component';
 import { GroupsComponent } from '../groups/groups.component';
 import { ClocksComponent } from '../clocks/clocks.component';
+import { PopupComponent } from '../popup/popup.component';
 
 const routes: Routes = [
     {
@@ -17,7 +19,20 @@ const routes: Routes = [
             },
             {
                 path: 'contacts',
-                component: ContactsComponent
+                component: ContactsComponent,
+                children: [
+                    {
+                        path: 'create',
+                        component: PopupComponent,
+                        data: {title: 'Add New User'},
+                        children: [
+                            {
+                                path: '',
+                                component: AddUserComponent
+                            }
+                        ]
+                    }
+                ]
             },
             {
                 path: 'groups',
@@ -26,9 +41,14 @@ const routes: Routes = [
             {
                 path: 'clocks',
                 component: ClocksComponent
-            },
+            }
         ]
+    },
+    {
+        path: 'contacts/create',
+        component: GroupsComponent,
+        outlet: 'popup'
     }
 ];
 
-export const routing = RouterModule.forChild(routes);
+export const routing = RouterModule.forRoot(routes);

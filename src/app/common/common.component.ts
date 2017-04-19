@@ -5,4 +5,5 @@ import { Component } from '@angular/core';
     templateUrl: './common.component.html'
 })
 
-export class CommonComponent {}
+export class CommonComponent {
+}

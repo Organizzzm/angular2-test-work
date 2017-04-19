@@ -18,7 +18,7 @@ import { routing }  from './app.routes';
         BrowserModule,
         routing,
         CommonModule,
-        NotFoundModule,
+        NotFoundModule
     ],
     declarations: [
         AppComponent

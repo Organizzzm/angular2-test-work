@@ -3,7 +3,7 @@
         <div class="main-block">
             <div class="main-block__title">Contacts page</div>
             <div class="main-block__border-block rounded">
-                <list-menu></list-menu>
+                <list-menu [menu]="menu"></list-menu>
                 <div class="list-table mt-4">
                     <contacts-list></contacts-list>
                 </div>
@@ -14,3 +14,5 @@
         <contact-card></contact-card>
     </div>
 </div>
+
+<router-outlet></router-outlet>

@@ -4,6 +4,8 @@ import { ContactItem } from '../interfaces/contacts';
 
 @Injectable()
 export class ContactsListService {
+    constructor(){}
+
     contacts: ContactItem[] = [
         {
             name: 'Dmitry',
@@ -11,7 +13,8 @@ export class ContactsListService {
             age: 11,
             group: 'quantum',
             distriction: 'dgsgsdgsd',
-            note: 'yeah, baby!'
+            note: 'yeah, baby!',
+            select: false
         },
         {
             name: 'Dmitry2',
@@ -19,7 +22,8 @@ export class ContactsListService {
             age: 11,
             group: 'quantum',
             distriction: 'dgsgsdgsd',
-            note: 'yeah, baby!'
+            note: 'yeah, baby!',
+            select: false
         },
         {
             name: 'Dmitry3',
@@ -27,11 +31,16 @@ export class ContactsListService {
             age: 11,
             group: 'quantum',
             distriction: 'dgsgsdgsd',
-            note: 'yeah, baby!'
+            note: 'yeah, baby!',
+            select: false
         }
     ];
 
-    getContacts(): ContactItem[] {
-        return this.contacts;
+    // getContacts(): ContactItem[] {
+    //     return this.contacts;
+    // }
+
+    addContact(obj: ContactItem): void {
+        this.contacts.push(obj);
     }
 }

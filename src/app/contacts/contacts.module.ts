@@ -8,6 +8,10 @@ import { CardComponent } from './components/card.component';
 import { ContactsListComponent } from './components/contacts-list.component';
 import { AddUserComponent } from './components/adduser.component';
 
+import { ContactsListService } from './services/contacts-list.service';
+import { ContactsService } from './services/contacts.service';
+import { CardService } from './services/card.service';
+
 import { MenuModule } from '../menu/menu.module';
 @NgModule({
     imports: [
@@ -26,7 +30,11 @@ import { MenuModule } from '../menu/menu.module';
         ContactsComponent,
         AddUserComponent
     ],
-    providers: []
+    providers: [
+        ContactsListService,
+        ContactsService,
+        CardService
+    ]
 })
 
 export class ContactsModule {

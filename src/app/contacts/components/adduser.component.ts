@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { ContactsListService } from '../services/contacts-list.service';
 
 @Component({
     selector: 'add-user',
@@ -7,7 +10,11 @@ import { Component } from '@angular/core';
 })
 
 export class AddUserComponent {
+    constructor(private contactsListService: ContactsListService, private router: Router){}
+
     addUser(value: any) {
-        console.log(value);
+        this.contactsListService.addContact(value);
+
+        this.router.navigate(['/']);
     }
 }

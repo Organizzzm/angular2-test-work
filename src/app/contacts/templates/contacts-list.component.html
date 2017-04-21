@@ -10,7 +10,9 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of contactsList">
+    <tr *ngFor="let item of contactsList"
+        (click)="tableClickHandler(item)"
+        [ngClass]="{selected: item.select }">
         <td>{{ item.name }}</td>
         <td>{{ item.surname }}</td>
         <td>{{ item.age }}</td>

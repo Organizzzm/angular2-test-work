@@ -4,5 +4,6 @@ export interface ContactItem {
     age: number,
     group: string,
     distriction: string,
-    note: string
+    note: string,
+    select: boolean
 }

@@ -9,7 +9,7 @@ export class ContactsService {
     constructor() {
         this.contactsMenu = [
             { name: 'Create', active: '', link: 'create' },
-            { name: 'Edit', active: 'disabled', link: '' },
+            { name: 'Edit', active: 'disabled', link: 'edit' },
             { name: 'Delete', active: 'disabled', link: '' },
             { name: 'Select', active: '', link: '' },
         ];

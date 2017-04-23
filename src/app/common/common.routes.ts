@@ -43,11 +43,6 @@ const routes: Routes = [
                 component: ClocksComponent
             }
         ]
-    },
-    {
-        path: 'contacts/create',
-        component: GroupsComponent,
-        outlet: 'popup'
     }
 ];
 

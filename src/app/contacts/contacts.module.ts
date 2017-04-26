@@ -6,11 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { ContactsComponent } from './components/contacts.component';
 import { CardComponent } from './components/card.component';
 import { ContactsListComponent } from './components/contacts-list.component';
-import { AddUserComponent } from './components/adduser.component';
+// import { AddUserComponent } from './components/adduser.component';
+// import { PopupComponent } from '../popup/popup.component';
 
 import { ContactsListService } from './services/contacts-list.service';
 import { ContactsService } from './services/contacts.service';
 import { CardService } from './services/card.service';
+import { PopupService } from "../popup/popup.service";
 
 import { MenuModule } from '../menu/menu.module';
 @NgModule({
@@ -24,16 +26,19 @@ import { MenuModule } from '../menu/menu.module';
         ContactsComponent,
         CardComponent,
         ContactsListComponent,
-        AddUserComponent
+        // AddUserComponent,
+        // PopupComponent
     ],
     exports: [
         ContactsComponent,
-        AddUserComponent
+        // AddUserComponent,
+        // PopupComponent
     ],
     providers: [
-        ContactsListService,
+        // ContactsListService,
         ContactsService,
-        CardService
+        // CardService,
+        PopupService
     ]
 })
 

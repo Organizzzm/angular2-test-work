@@ -1,8 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { ContactsListService } from '../services/contacts-list.service';
 import { ContactsService } from '../services/contacts.service';
-import { CardService } from '../services/card.service';
 
 import { ContactItem } from '../interfaces/contacts';
 
@@ -13,26 +11,29 @@ import { ContactItem } from '../interfaces/contacts';
 })
 
 export class ContactsListComponent {
-    contactsList: ContactItem[] = [];
-    countOfSelectItems: number = 0;
+    @Input('contactsList') contacts: ContactItem[];
+    @Input() selectState: boolean;
+    @Output() tableClick: EventEmitter<any> = new EventEmitter();
+    @Output() itemsCountEvent: EventEmitter<number> = new EventEmitter();
 
-    constructor(private contactsListService: ContactsListService,
-                private contactsService: ContactsService,
-                private cardService: CardService) {
-        this.contactsList = this.contactsListService.contacts;
-    }
+    countOfSelectItems = 0;
 
     tableClickHandler(value: ContactItem): void {
+        if (!this.selectState) {
+            this.contacts.forEach(item => {
+                item.select = false;
+            });
+            this.countOfSelectItems = 0;
+        }
+
         value.select = !value.select;
 
         if (value.select) this.countOfSelectItems++;
         else this.countOfSelectItems--;
 
-        if (this.countOfSelectItems == 0) this.cardService.clearCard();
-        else this.cardService.setUserToCard(value);
+        if (this.countOfSelectItems == 0) this.tableClick.emit(new ContactItem());
+        else this.tableClick.emit(value);
 
-        this.contactsService.checkCountOfItems(this.countOfSelectItems);
-
-        console.log(value);
+        this.itemsCountEvent.emit(this.countOfSelectItems);
     }
 }

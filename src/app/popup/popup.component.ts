@@ -1,5 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import {
+    Component,
+    ViewChild,
+    ViewContainerRef,
+    ComponentFactoryResolver,
+    OnInit
+} from '@angular/core';
+
+import { Router } from '@angular/router';
+
+import { PopupService } from './popup.service';
 
 @Component({
     selector: 'popup',
@@ -7,19 +16,41 @@ import { Router, ActivatedRoute } from '@angular/router';
     styleUrls: ['popup.component.scss']
 })
 
-export class PopupComponent implements OnInit{
+export class PopupComponent implements OnInit {
+    @ViewChild('container', { read: ViewContainerRef }) container: ViewContainerRef;
+    visibility: boolean = false;
     titleName: string;
 
-    constructor(private router: Router, private route: ActivatedRoute) {
+    constructor(private componentFactoryResolver: ComponentFactoryResolver,
+                private popupService: PopupService,
+                private router: Router) {
     }
 
-    ngOnInit(){
-        this.titleName = this.route.snapshot.data['title'];
+    openComponentInPopup(component: any): void {
+        this.titleName = component.title;
+
+        const childComponent = this.componentFactoryResolver.resolveComponentFactory(component.component);
+        this.container.createComponent(childComponent);
+
+        this.visibility = true;
     }
 
-    closePopup(event: any): void {
-        if (event.target.classList.contains('dark-shim')) {
-            this.router.navigate(['/'])
-        }
+    popupClickHandler(event: any) {
+        if (event.target.classList.contains('dark-shim')) this.closePopup();
+    }
+
+    closePopup() {
+        this.visibility = false;
+
+        setTimeout(()=> {
+            this.container.clear();
+        }, 300);
+    }
+
+    ngOnInit() {
+        this.popupService.registerHost(this);
+        this.router.events.subscribe(()=> {
+            this.closePopup();
+        });
     }
 }

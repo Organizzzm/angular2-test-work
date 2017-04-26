@@ -6,6 +6,7 @@ import { removeNgStyles, createNewHosts, bootloader } from '@angularclass/hmr';
 // Import modules
 import { CommonModule } from './common/common.module';
 import { NotFoundModule } from './404/404.module';
+import { PopupModule } from './popup/popup.module';
 
 // Import components
 import { AppComponent } from './app.component';
@@ -18,7 +19,8 @@ import { routing }  from './app.routes';
         BrowserModule,
         routing,
         CommonModule,
-        NotFoundModule
+        NotFoundModule,
+        PopupModule
     ],
     declarations: [
         AppComponent

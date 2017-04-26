@@ -1,6 +1,6 @@
 <div class="menu text-center">
-    <a *ngFor="let item of menu"
-       [routerLink]=[item.link]
+    <button *ngFor="let item of menu"
+       (click)="item.link()"
        role="button"
-       class="btn btn-outline-primary btn-sm ml-1 mr-1 {{ item.active }}">{{ item.name }}</a>
+       class="btn btn-outline-primary btn-sm ml-1 mr-1 {{ item.active }}">{{ item.name }}</button>
 </div>

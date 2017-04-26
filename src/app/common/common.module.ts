@@ -7,7 +7,6 @@ import { ClocksComponent } from '../clocks/clocks.component';
 
 import { ContactsModule } from '../contacts/contacts.module';
 import { GroupsModule } from '../groups/groups.module';
-import { PopupModule } from '../popup/popup.module';
 
 import { routing } from './common.routes';
 
@@ -16,8 +15,7 @@ import { routing } from './common.routes';
         BrowserModule,
         routing,
         ContactsModule,
-        GroupsModule,
-        PopupModule
+        GroupsModule
     ],
     declarations: [
         CommonComponent,

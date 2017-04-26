@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
-import { ContactsListService } from '../services/contacts-list.service';
+import { PopupService } from '../../popup/popup.service';
 
 @Component({
     selector: 'add-user',
@@ -10,11 +9,9 @@ import { ContactsListService } from '../services/contacts-list.service';
 })
 
 export class AddUserComponent {
-    constructor(private contactsListService: ContactsListService, private router: Router){}
+    constructor(private popupService: PopupService) {}
 
     addUser(value: any) {
-        this.contactsListService.addContact(value);
-
-        this.router.navigate(['/']);
+        this.popupService.close();
     }
 }

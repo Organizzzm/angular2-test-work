@@ -1,8 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { ContactItem } from '../interfaces/contacts';
-
-import { CardService } from '../services/card.service';
 
 @Component({
     selector: 'contact-card',
@@ -11,9 +9,5 @@ import { CardService } from '../services/card.service';
 })
 
 export class CardComponent {
-    private card: ContactItem;
-
-    constructor(private cardService: CardService) {
-        this.card = this.cardService.card;
-    }
+    @Input('currentContact') card: ContactItem;
 }

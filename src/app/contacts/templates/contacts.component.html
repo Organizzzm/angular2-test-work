@@ -5,14 +5,17 @@
             <div class="main-block__border-block rounded">
                 <list-menu [menu]="menu"></list-menu>
                 <div class="list-table mt-4">
-                    <contacts-list></contacts-list>
+                    <contacts-list
+                            [contactsList]="contacts"
+                            [selectState]="selectState"
+                            (tableClick)="addContactToCard($event)"
+                            (itemsCountEvent)="selectItemsHandler($event)"
+                    ></contacts-list>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-4 pr-0">
-        <contact-card></contact-card>
+        <contact-card [currentContact]="contact"></contact-card>
     </div>
 </div>
-
-<router-outlet></router-outlet>

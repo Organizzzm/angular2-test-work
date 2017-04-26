@@ -2,10 +2,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { CommonComponent } from './common.component';
 import { ContactsComponent } from '../contacts/components/contacts.component';
-import { AddUserComponent } from '../contacts/components/adduser.component';
+// import { AddUserComponent } from '../contacts/components/adduser.component';
 import { GroupsComponent } from '../groups/groups.component';
 import { ClocksComponent } from '../clocks/clocks.component';
-import { PopupComponent } from '../popup/popup.component';
+// import { PopupComponent } from '../popup/popup.component';
 
 const routes: Routes = [
     {
@@ -20,19 +20,19 @@ const routes: Routes = [
             {
                 path: 'contacts',
                 component: ContactsComponent,
-                children: [
-                    {
-                        path: 'create',
-                        component: PopupComponent,
-                        data: {title: 'Add New User'},
-                        children: [
-                            {
-                                path: '',
-                                component: AddUserComponent
-                            }
-                        ]
-                    }
-                ]
+                // children: [
+                //     {
+                //         path: 'create',
+                //         component: PopupComponent,
+                //         data: {title: 'Add New User'},
+                //         children: [
+                //             {
+                //                 path: '',
+                //                 component: AddUserComponent
+                //             }
+                //         ]
+                //     }
+                // ]
             },
             {
                 path: 'groups',

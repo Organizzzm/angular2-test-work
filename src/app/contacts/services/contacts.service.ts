@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
+import { Subject }    from 'rxjs/Subject';
 
-import { Menu } from '../../menu/menu';
+// import { Menu } from '../../menu/menu';
 import { ContactItem } from '../interfaces/contacts';
-
-import { AddUserComponent } from "../components/adduser.component";
 
 
 @Injectable()
 export class ContactsService {
-    public contacts: ContactItem[];
+    public contacts: ContactItem[] = [];
+    private addContactSource = new Subject<ContactItem>();
 
-    constructor() {
+    addContact$ = this.addContactSource.asObservable();
+
+    getContacts(): void {
         this.contacts = [
             {
                 name: 'Dmitry',
@@ -42,43 +44,22 @@ export class ContactsService {
         ];
     }
 
-    getContacts() {
-        return this.contacts;
+    addContact(obj: ContactItem): void {
+        //save contact and call callback =>
+        this.addContactSource.next(obj);
     }
 
+    removeContacts(): void {
+        //remove contact and call callback =>
+        let index: number;
 
-    // addContact(obj: ContactItem): void {
-    //     this.contacts.push(obj);
-    // }
-    //
-    // openAddUserPopup(): void {
-    //     this.popupService.openComponentInPopup({
-    //         title: 'Add New User',
-    //         component: AddUserComponent
-    //     });
-    // }
-    //
-    // openEditUserPopup(){
-    //     this.popupService.openComponentInPopup({
-    //         title: 'Edit User',
-    //         component: AddUserComponent
-    //     });
-    // }
+        this.contacts.forEach(contact => {
+            if (contact.select)
+                index = this.contacts.indexOf(contact, 0);
 
-    // checkCountOfItems(count: number): void {
-    //     if (count == 1) {
-    //         this.contactsMenu[1].active = '';
-    //         this.contactsMenu[2].active = '';
-    //     }
-    //
-    //     if (count == 0) {
-    //         this.contactsMenu[1].active = 'disabled';
-    //         this.contactsMenu[2].active = 'disabled';
-    //     }
-    //
-    //     if (count > 1) {
-    //         this.contactsMenu[1].active = 'disabled';
-    //         this.contactsMenu[2].active = '';
-    //     }
-    // }
+            if (index > -1)
+                this.contacts.splice(index, 1);
+        });
+    }
+
 }

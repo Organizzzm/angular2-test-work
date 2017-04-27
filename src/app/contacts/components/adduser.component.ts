@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+import { ContactItem } from '../interfaces/contacts';
+
+import { ContactsService } from '../services/contacts.service';
 import { PopupService } from '../../popup/popup.service';
 
 @Component({
@@ -9,9 +12,11 @@ import { PopupService } from '../../popup/popup.service';
 })
 
 export class AddUserComponent {
-    constructor(private popupService: PopupService) {}
+    constructor(private popupService: PopupService,
+                private contactsService: ContactsService) {}
 
-    addUser(value: any) {
+    addUser(value: ContactItem) {
+        this.contactsService.addContact(value);
         this.popupService.close();
     }
 }

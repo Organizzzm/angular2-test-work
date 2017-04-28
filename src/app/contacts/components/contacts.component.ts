@@ -5,6 +5,7 @@ import { ContactItem } from '../interfaces/contacts';
 
 import { AddUserComponent } from '../components/adduser.component';
 import { RemoveContactsComponent } from '../components/remove-contact.component';
+import { EditContactsComponent } from '../components/edit-contact.component';
 
 import { ContactsService } from '../services/contacts.service';
 import { PopupService } from "../../popup/popup.service";
@@ -25,13 +26,13 @@ export class ContactsComponent implements OnInit {
                 private popupService: PopupService) {
         this.menu = [
             { name: 'Create', active: '', link: this.addContactForm.bind(this) },
-            { name: 'Edit', active: 'disabled', link: '' },
+            { name: 'Edit', active: 'disabled', link: this.addEditContactsForm.bind(this) },
             { name: 'Delete', active: 'disabled', link: this.addRemoveContactsForm.bind(this) },
             { name: 'Select', active: '', link: this.changeSelectState.bind(this) },
         ];
 
-        this.contactsService.addContact$.subscribe(contact => {
-            this.contacts.push(contact);
+        this.contactsService.removeContact$.subscribe(() => {
+            this.contacts = this.contactsService.contacts;
         });
     }
 
@@ -47,6 +48,19 @@ export class ContactsComponent implements OnInit {
             this.popupService.openComponentInPopup({
                 title: 'Are You Want Remove Select Contacts?',
                 component: RemoveContactsComponent
+            })
+        }
+    }
+
+    addEditContactsForm() {
+        const contacts = this.contacts.filter(contact => {
+           return contact.select;
+        });
+
+        if(contacts.length == 1){
+            this.popupService.openComponentInPopup({
+                title: 'Edit Contact?',
+                component: EditContactsComponent
             })
         }
     }

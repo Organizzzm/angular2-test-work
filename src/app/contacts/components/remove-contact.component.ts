@@ -1,10 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
-// import { Menu } from '../../menu/menu';
-// import { ContactItem } from '../interfaces/contacts';
-//
-// import { AddUserComponent } from '../components/adduser.component';
-//
 import { ContactsService } from '../services/contacts.service';
 import { PopupService } from "../../popup/popup.service";
 
@@ -15,7 +10,8 @@ import { PopupService } from "../../popup/popup.service";
 
 export class RemoveContactsComponent {
     constructor(private popupService: PopupService,
-                private contactsService: ContactsService) {}
+                private contactsService: ContactsService) {
+    }
 
     closePopup() {
         this.popupService.close();

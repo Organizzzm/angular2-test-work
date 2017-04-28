@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject }    from 'rxjs/Subject';
 
-// import { Menu } from '../../menu/menu';
 import { ContactItem } from '../interfaces/contacts';
 
 
@@ -9,8 +8,10 @@ import { ContactItem } from '../interfaces/contacts';
 export class ContactsService {
     public contacts: ContactItem[] = [];
     private addContactSource = new Subject<ContactItem>();
+    private removeContactSource = new Subject<ContactItem>();
 
     addContact$ = this.addContactSource.asObservable();
+    removeContact$ = this.removeContactSource.asObservable();
 
     getContacts(): void {
         this.contacts = [
@@ -46,20 +47,24 @@ export class ContactsService {
 
     addContact(obj: ContactItem): void {
         //save contact and call callback =>
-        this.addContactSource.next(obj);
+        this.contacts.push(obj);
     }
 
     removeContacts(): void {
         //remove contact and call callback =>
-        let index: number;
-
-        this.contacts.forEach(contact => {
-            if (contact.select)
-                index = this.contacts.indexOf(contact, 0);
-
-            if (index > -1)
-                this.contacts.splice(index, 1);
+        this.contacts = this.contacts.filter(contact => {
+            return !contact.select;
         });
+
+        this.removeContactSource.next();
     }
 
+    updateContact(contact: ContactItem, oldContact: ContactItem) {
+        //update contact and call cllnack
+        let index: number;
+        index = this.contacts.indexOf(oldContact, 0);
+
+        if (index > -1)
+            this.contacts[index] = contact;
+    }
 }

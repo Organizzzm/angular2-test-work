@@ -1,7 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { ContactsService } from '../services/contacts.service';
-
 import { ContactItem } from '../interfaces/contacts';
 
 @Component({

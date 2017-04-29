@@ -1,0 +1,9 @@
+<div [ngClass]="visibility?'visible':'hidden'" class="d-flex justify-content-center align-items-center fixed-top full-height dark-shim"
+     (click)="popupClickHandler($event)">
+    <div class="popup-blank rounded">
+        <div class="popup-title p-3">{{titleName}}</div>
+        <div class="p-4">
+            <div #container></div>
+        </div>
+    </div>
+</div>

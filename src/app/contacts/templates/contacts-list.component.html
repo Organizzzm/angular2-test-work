@@ -1,0 +1,24 @@
+<table class="table table-sm table-striped table-hover">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Age</th>
+        <th>Group</th>
+        <th>Destriction</th>
+        <th>Note</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of contacts"
+        (click)="tableClickHandler(item)"
+        [ngClass]="{selected: item.select }">
+        <td>{{ item.name }}</td>
+        <td>{{ item.surname }}</td>
+        <td>{{ item.age }}</td>
+        <td>{{ item.group }}</td>
+        <td>{{ item.distriction }}</td>
+        <td>{{ item.note }}</td>
+    </tr>
+    </tbody>
+</table>

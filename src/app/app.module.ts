@@ -1,7 +1,9 @@
 import { NgModule, ApplicationRef } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-// import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
-import { removeNgStyles, createNewHosts, bootloader } from '@angularclass/hmr';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { BrowserModule, Title } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
+
+import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
 // Import modules
 import { CommonModule } from './common/common.module';
@@ -11,6 +13,9 @@ import { PopupModule } from './popup/popup.module';
 // Import components
 import { AppComponent } from './app.component';
 
+//Import models
+import {InMemoryDataService} from './models/contacts.model';
+
 // Import routes
 import { routing }  from './app.routes';
 
@@ -18,6 +23,8 @@ import { routing }  from './app.routes';
     imports: [
         BrowserModule,
         routing,
+        HttpModule,
+        InMemoryWebApiModule.forRoot(InMemoryDataService),
         CommonModule,
         NotFoundModule,
         PopupModule
@@ -26,14 +33,12 @@ import { routing }  from './app.routes';
         AppComponent
     ],
     bootstrap: [AppComponent],
-    providers: []
+    providers: [Title]
 })
 
 export class AppModule {
-    constructor(public appRef: ApplicationRef) {
-    }
+    constructor(public appRef: ApplicationRef) {}
 
-    //TODO: need remove
     // hmrOnInit(store: any) {
     //     console.log('HMR store', store);
     // }
@@ -52,10 +57,3 @@ export class AppModule {
         delete store.disposeOldHosts;
     }
 }
-
-//TODO: need remove
-// export function main() {
-//     return platformBrowserDynamic().bootstrapModule(AppModule);
-// }
-
-// bootloader(main);

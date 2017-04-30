@@ -11,7 +11,7 @@ import { PopupService } from "../../popup/popup.service";
 })
 
 export class EditContactsComponent implements OnInit {
-    private currentContact: ContactItem;
+    public currentContact: ContactItem;
     private oldContact: ContactItem;
 
     constructor(private popupService: PopupService,

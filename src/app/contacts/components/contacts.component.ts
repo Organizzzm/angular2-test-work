@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { Menu } from '../../menu/menu';
 import { ContactItem } from '../interfaces/contacts';
@@ -23,7 +24,8 @@ export class ContactsComponent implements OnInit {
     selectState: boolean = false;
 
     constructor(private contactsService: ContactsService,
-                private popupService: PopupService) {
+                private popupService: PopupService,
+                private titleService: Title) {
         this.menu = [
             { name: 'Create', active: '', link: this.addContactForm.bind(this) },
             { name: 'Edit', active: 'disabled', link: this.addEditContactsForm.bind(this) },
@@ -36,6 +38,14 @@ export class ContactsComponent implements OnInit {
         });
     }
 
+    ngOnInit() {
+        this.contactsService.getContacts()
+            .then(contacts => this.contacts = contacts)
+            .catch(error => console.log(error));
+
+        this.titleService.setTitle('Contacts');
+    }
+
     addContactForm() {
         this.popupService.openComponentInPopup({
             title: 'Add New Contact',
@@ -44,7 +54,7 @@ export class ContactsComponent implements OnInit {
     }
 
     addRemoveContactsForm() {
-        if(this.menu[2].active === ''){
+        if (this.menu[2].active === '') {
             this.popupService.openComponentInPopup({
                 title: 'Are You Want Remove Select Contacts?',
                 component: RemoveContactsComponent
@@ -54,10 +64,10 @@ export class ContactsComponent implements OnInit {
 
     addEditContactsForm() {
         const contacts = this.contacts.filter(contact => {
-           return contact.select;
+            return contact.select;
         });
 
-        if(contacts.length == 1){
+        if (contacts.length == 1) {
             this.popupService.openComponentInPopup({
                 title: 'Edit Contact?',
                 component: EditContactsComponent
@@ -89,10 +99,5 @@ export class ContactsComponent implements OnInit {
             this.menu[1].active = 'disabled';
             this.menu[2].active = '';
         }
-    }
-
-    ngOnInit() {
-        this.contactsService.getContacts();
-        this.contacts = this.contactsService.contacts;
     }
 }

@@ -11,23 +11,20 @@ module.exports = {
 	},
 
 	resolve: {
-		extensions: ['.ts', '.js', '.scss', '.html']
+		extensions: ['.ts', '.js']
 	},
 
 	module: {
-		// exprContextCritical: false,
 		rules: [
 			{
 				test: /\.ts$/,
-				use: [
-					{
-						loader: '@angularclass/hmr-loader'
-					},
+				loaders: [
+					// {
+					// 	loader: "@angularclass/hmr-loader"
+					// },
 					{
 						loader: 'awesome-typescript-loader',
-						options: {
-							configFileName: helpers.root('src', 'tsconfig.json')
-						}
+						options: {configFileName: helpers.root('src', 'tsconfig.json')}
 					},
 					'angular2-template-loader'
 				]
@@ -42,25 +39,26 @@ module.exports = {
 			},
 			{
 				test: /\.scss$/,
-				use: [
-					ExtractTextPlugin.extract({
-						fallback: "style-loader",
-						loader: "css-loader",
-					}),
-					'to-string-loader',
-					'css-loader',
-					'sass-loader'
-				]
+				exclude: [helpers.root('src', 'app')], //helpers.root('node_modules'),
+				loaders: ExtractTextPlugin.extract({
+					fallbackLoader: "style-loader",
+					loader: "css-loader?sourceMap!sass-loader"
+				})
+			},
+			{
+				test: /\.scss$/,
+				include: [helpers.root('src', 'app')],
+				loaders: ['raw-loader', 'sass-loader?outputStyle=compressed&sourceComments=false']
 			}
 		]
 	},
 
 	plugins: [
 		new webpack.ContextReplacementPlugin(
-			/angular(\\|\/)core(\\|\/)@angular/,
-			helpers.root('./src'), {}
+		  /angular(\\|\/)core(\\|\/)@angular/,
+		  helpers.root('./src'), {}
 		),
-		new webpack.NamedModulesPlugin(),
+
 		new webpack.optimize.CommonsChunkPlugin({
 			name: ['app', 'vendor', 'polyfills']
 		}),

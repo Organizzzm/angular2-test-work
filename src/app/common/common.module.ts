@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-
+// import { BrowserModule, Title } from '@angular/platform-browser';
 import { CommonComponent } from './common.component';
 import { NavBarComponent } from '../navbar/navbar.component';
 import { ClocksComponent } from '../clocks/clocks.component';
@@ -10,9 +9,11 @@ import { GroupsModule } from '../groups/groups.module';
 
 import { routing } from './common.routes';
 
+// import {CommonModule}   from '@angular/common';
+
 @NgModule({
     imports: [
-        BrowserModule,
+        // CommonModule,
         routing,
         ContactsModule,
         GroupsModule
@@ -26,5 +27,5 @@ import { routing } from './common.routes';
     providers: []
 })
 
-export class CommonModule {
+export class MainModule {
 }

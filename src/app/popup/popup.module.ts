@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { PopupComponent } from './popup.component';
@@ -9,7 +9,7 @@ import { EditContactsComponent } from "../contacts/components/edit-contact.compo
 
 @NgModule({
     imports: [
-        BrowserModule,
+        CommonModule,
         FormsModule
     ],
     declarations: [

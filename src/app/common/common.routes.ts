@@ -17,23 +17,23 @@ const routes: Routes = [
                 redirectTo: 'contacts',
                 pathMatch: 'full'
             },
-            {
-                path: 'contacts',
-                component: ContactsComponent,
-                // children: [
-                //     {
-                //         path: 'create',
-                //         component: PopupComponent,
-                //         data: {title: 'Add New User'},
-                //         children: [
-                //             {
-                //                 path: '',
-                //                 component: AddUserComponent
-                //             }
-                //         ]
-                //     }
-                // ]
-            },
+            // {
+            //     path: 'contacts',
+            //     component: ContactsComponent
+            //     // children: [
+            //     //     {
+            //     //         path: 'create',
+            //     //         component: PopupComponent,
+            //     //         data: {title: 'Add New User'},
+            //     //         children: [
+            //     //             {
+            //     //                 path: '',
+            //     //                 component: AddUserComponent
+            //     //             }
+            //     //         ]
+            //     //     }
+            //     // ]
+            // },
             {
                 path: 'groups',
                 component: GroupsComponent

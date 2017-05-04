@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
@@ -11,9 +12,10 @@ import { ContactsService } from './services/contacts.service';
 import { PopupService } from "../popup/popup.service";
 
 import { MenuModule } from '../menu/menu.module';
+
 @NgModule({
     imports: [
-        BrowserModule,
+        CommonModule,
         RouterModule,
         FormsModule,
         MenuModule
@@ -32,5 +34,4 @@ import { MenuModule } from '../menu/menu.module';
     ]
 })
 
-export class ContactsModule {
-}
+export class ContactsModule {}

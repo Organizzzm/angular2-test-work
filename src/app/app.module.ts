@@ -6,15 +6,15 @@ import { HttpModule } from '@angular/http';
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
 // Import modules
-import { CommonModule } from './common/common.module';
-import { NotFoundModule } from './404/404.module';
+import { NotFoundModule } from './+404/404.module';
 import { PopupModule } from './popup/popup.module';
+import { MainModule } from './common/common.module';
 
 // Import components
 import { AppComponent } from './app.component';
 
-//Import models
-import {InMemoryDataService} from './models/contacts.model';
+// Import models
+import { InMemoryDataService } from './models/contacts.model';
 
 // Import routes
 import { routing }  from './app.routes';
@@ -25,7 +25,7 @@ import { routing }  from './app.routes';
         routing,
         HttpModule,
         InMemoryWebApiModule.forRoot(InMemoryDataService),
-        CommonModule,
+        MainModule,
         NotFoundModule,
         PopupModule
     ],
@@ -37,14 +37,15 @@ import { routing }  from './app.routes';
 })
 
 export class AppModule {
-    constructor(public appRef: ApplicationRef) {}
+    constructor(public appRef: ApplicationRef) {
+    }
 
     // hmrOnInit(store: any) {
     //     console.log('HMR store', store);
     // }
 
     hmrOnDestroy(store: any) {
-        var cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
+        let cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
         // recreate elements
         store.disposeOldHosts = createNewHosts(cmpLocation);
         // remove styles

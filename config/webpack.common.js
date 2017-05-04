@@ -5,9 +5,9 @@ var helpers = require('./helpers');
 
 module.exports = {
 	entry: {
-		'polyfills': './src/polyfills.ts',
-		'vendor': './src/vendor.ts',
-		'app': './src/main.ts'
+		'polyfills': helpers.root('src', 'polyfills.ts'),
+		'vendor': helpers.root('src', 'vendor.ts'),
+		'app': helpers.root('src', 'main.ts')
 	},
 
 	resolve: {
@@ -26,7 +26,8 @@ module.exports = {
 						loader: 'awesome-typescript-loader',
 						options: {configFileName: helpers.root('src', 'tsconfig.json')}
 					},
-					'angular2-template-loader'
+					'angular2-template-loader',
+					'angular-router-loader?aot=true&genDir=compiled'
 				]
 			},
 			{

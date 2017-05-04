@@ -6,7 +6,6 @@ import { HttpModule } from '@angular/http';
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
 // Import modules
-import { NotFoundModule } from './+404/404.module';
 import { PopupModule } from './popup/popup.module';
 import { MainModule } from './common/common.module';
 
@@ -26,7 +25,6 @@ import { routing }  from './app.routes';
         HttpModule,
         InMemoryWebApiModule.forRoot(InMemoryDataService),
         MainModule,
-        NotFoundModule,
         PopupModule
     ],
     declarations: [

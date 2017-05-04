@@ -27,7 +27,7 @@ module.exports = {
 						options: {configFileName: helpers.root('src', 'tsconfig.json')}
 					},
 					'angular2-template-loader',
-					'angular-router-loader?aot=true&genDir=compiled'
+					'angular-router-loader'
 				]
 			},
 			{

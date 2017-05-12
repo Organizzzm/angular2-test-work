@@ -9,5 +9,5 @@ import { ContactItem } from '../interfaces/contacts';
 })
 
 export class CardComponent {
-    @Input('currentContact') card: ContactItem;
+    @Input() currentContact: ContactItem;
 }

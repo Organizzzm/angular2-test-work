@@ -9,8 +9,9 @@ import { ContactItem } from '../interfaces/contacts';
 })
 
 export class ContactsListComponent {
-    @Input('contactsList') contacts: ContactItem[];
+    @Input() contactsList: ContactItem[];
     @Input() selectState: boolean;
+
     @Output() tableClick: EventEmitter<any> = new EventEmitter();
     @Output() itemsCountEvent: EventEmitter<number> = new EventEmitter();
 
@@ -18,9 +19,10 @@ export class ContactsListComponent {
 
     tableClickHandler(value: ContactItem): void {
         if (!this.selectState) {
-            this.contacts.forEach(item => {
+            this.contactsList.forEach(item => {
                 item.select = false;
             });
+
             this.countOfSelectItems = 0;
         }
 

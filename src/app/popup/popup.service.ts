@@ -17,6 +17,7 @@ export class PopupService {
     }
 
     openComponentInPopup(component: any): any{
+
         if (!this.host) {
             throw new Error("Host is not registered");
         }

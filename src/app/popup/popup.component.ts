@@ -24,6 +24,7 @@ export class PopupComponent implements OnInit {
     constructor(private componentFactoryResolver: ComponentFactoryResolver,
                 private popupService: PopupService,
                 private router: Router) {
+
     }
 
     openComponentInPopup(component: any): void {

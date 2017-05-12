@@ -18,14 +18,15 @@ import { PopupService } from "../../popup/popup.service";
 })
 
 export class ContactsComponent implements OnInit {
-    menu: Menu[] = [];
-    contacts: ContactItem[];
-    contact: ContactItem = new ContactItem();
-    selectState: boolean = false;
+    public menu: Menu[] = [];
+    public contacts: ContactItem[];
+    public contact: ContactItem = new ContactItem();
+    public selectState: boolean = false;
 
     constructor(private contactsService: ContactsService,
                 private popupService: PopupService,
                 private titleService: Title) {
+
         this.menu = [
             { name: 'Create', active: '', link: this.addContactForm.bind(this) },
             { name: 'Edit', active: 'disabled', link: this.addEditContactsForm.bind(this) },
@@ -39,11 +40,11 @@ export class ContactsComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.titleService.setTitle('Contacts');
+
         this.contactsService.getContacts()
             .then(contacts => this.contacts = contacts)
             .catch(error => console.log(error));
-
-        this.titleService.setTitle('Contacts');
     }
 
     addContactForm() {

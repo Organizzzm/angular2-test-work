@@ -8,5 +8,4 @@ import { NotFoundComponent } from './404.component';
     declarations: [NotFoundComponent]
 })
 
-export class NotFoundModule {
-}
+export class NotFoundModule {}

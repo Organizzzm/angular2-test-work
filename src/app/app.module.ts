@@ -1,19 +1,19 @@
 import { NgModule, ApplicationRef } from '@angular/core';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
 // Import modules
-import { PopupModule } from './popup/popup.module';
 import { MainModule } from './common/common.module';
+import { CoreModule } from './core/core.module';
 
 // Import components
 import { AppComponent } from './app.component';
 
 // Import models
-import { InMemoryDataService } from './models/contacts.model';
+
 
 // Import routes
 import { routing }  from './app.routes';
@@ -23,9 +23,8 @@ import { routing }  from './app.routes';
         BrowserModule,
         routing,
         HttpModule,
-        InMemoryWebApiModule.forRoot(InMemoryDataService),
-        MainModule,
-        PopupModule
+        CoreModule,
+        MainModule
     ],
     declarations: [
         AppComponent
